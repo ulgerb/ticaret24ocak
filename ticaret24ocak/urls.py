@@ -32,6 +32,7 @@ urlpatterns = [
     # path('user/', include("appUser.urls"))
     # === USER ===
     path('login/', loginUser, name="loginUser"),
+    path('logout/', logoutUser, name="logoutUser"),
     path('register/', registerUser, name="registerUser"),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

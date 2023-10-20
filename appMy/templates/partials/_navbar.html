@@ -57,6 +57,8 @@
                </li>
             </ul>
          </div>
+
+         {% if request.user.is_authenticated %}
          <div class="navbar align-self-center d-flex">
             <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                <div class="input-group">
@@ -80,6 +82,13 @@
                   class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
             </a>
          </div>
+         {% else %}
+         <div>
+            <a href="{% url 'loginUser' %}" class="btn btn-primary text-light fw-bold">Giriş</a>
+         </div>
+         {% endif %}
+
+
       </div>
 
    </div>
