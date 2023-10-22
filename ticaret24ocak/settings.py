@@ -126,3 +126,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# EMAİL
+EMAIL_USE_TLS = True # değişmez
+EMAIL_HOST = 'smtp.gmail.com' # değişmez
+EMAIL_PORT = 587  # değişmez
+EMAIL_HOST_USER = 'neos24ocak@gmail.com'
+EMAIL_HOST_PASSWORD = 'urrkobvaowstmmaz'
+

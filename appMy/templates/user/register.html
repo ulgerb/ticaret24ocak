@@ -12,9 +12,8 @@
                      
                      <div class="col-md-4 col-lg-7 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
-   
-                           <form>
-   
+                           <form method="POST">
+                              {% csrf_token %}
                               <div class="d-flex align-items-center mb-3 pb-1">
                                  <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                  <span class="h1 fw-bold mb-0">Logo</span>
@@ -23,34 +22,34 @@
                               <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Kayıt Ol</h5>
    
                               <div class="form-outline mb-4">
-                                 <input type="text" id="form2Example17" class="form-control form-control-lg" />
+                                 <input name="username" type="text" id="form2Example17" class="form-control form-control-lg" />
                                  <label class="form-label" for="form2Example17">Kullanıcı Adı</label>
                               </div>
                               <div class="form-outline mb-4">
-                                 <input type="text" id="form2Example17" class="form-control form-control-lg" />
+                                 <input name="fname" type="text" id="form2Example17" class="form-control form-control-lg" />
                                  <label class="form-label" for="form2Example17">Ad</label>
                               </div>
                               <div class="form-outline mb-4">
-                                 <input type="text" id="form2Example17" class="form-control form-control-lg" />
+                                 <input name="lname" type="text" id="form2Example17" class="form-control form-control-lg" />
                                  <label class="form-label" for="form2Example17">Soyad</label>
                               </div>
 
                               <div class="form-outline mb-4">
-                                 <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                                 <input name="email" type="email" id="form2Example17" class="form-control form-control-lg" />
                                  <label class="form-label" for="form2Example17">Email address</label>
                               </div>
    
                               <div class="form-outline mb-4">
-                                 <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                                 <input name="password1" type="password" id="form2Example27" class="form-control form-control-lg" />
                                  <label class="form-label" for="form2Example27">Şifre</label>
                               </div>
                               <div class="form-outline mb-4">
-                                 <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                                 <input name="password2" type="password" id="form2Example27" class="form-control form-control-lg" />
                                  <label class="form-label" for="form2Example27">Tekrar Şifre</label>
                               </div>
    
                               <div class="pt-1 mb-4">
-                                 <button class="btn btn-dark btn-lg btn-block" type="button">Kaydol</button>
+                                 <button class="btn btn-dark btn-lg btn-block" type="submit">Kaydol</button>
                               </div>
    
                               <p class="mb-5 pb-lg-2" style="color: #393f81;">Zaten bir hesabım var 
