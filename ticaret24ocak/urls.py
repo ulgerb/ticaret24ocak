@@ -34,5 +34,6 @@ urlpatterns = [
     path('login/', loginUser, name="loginUser"),
     path('logout/', logoutUser, name="logoutUser"),
     path('register/', registerUser, name="registerUser"),
+    path('user/email/active/<active>', emailAktive, name="emailAktive")
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -76,16 +76,16 @@ def registerUser(request):
             # anasayfa profile sepet detay
          if bool_len and bool_up and bool_num and bool_char and bool_user and bool_email:
             user = User.objects.create_user(username=username, email=email, password=password1, first_name=fname, last_name=lname)
-            user.is_active = False
+            user.is_active = False # kullanıcının giriş yapmasını engelledik
             user.save()
 
             userinfo = UserInfo(user=user)
-            userinfo.save()
+            userinfo.save() # save ederken modeldeki save de çalışır emailaktive ve image gönderilir
             
             messages.success(request, "Kaydınız başarıyla tamamlandı emaili doğrulayın...")
             send_mail(
                "Email Doğrulama",
-               f"Emaili doğrulamak için linki tıklayın:",
+               f"Emaili doğrulamak için linki tıklayın: \n {request.get_host()}/user/email/active/{userinfo.emailactive}",
                EMAIL_HOST_USER,
                [email],
                fail_silently=False,
@@ -98,3 +98,18 @@ def registerUser(request):
    
    context={}
    return render(request, 'user/register.html', context)
+
+
+def emailAktive(request, active):
+
+   if UserInfo.objects.filter(emailactive=active).exists():
+      userinfo = UserInfo.objects.get(emailactive=active) # yoksa hata verir
+      
+      userinfo.user.is_active = True
+      userinfo.user.save()
+      messages.success(request, "Email doğrulamanız yapıldı. Giriş yapabilirsiniz.")
+   else:
+      messages.error(request, "Yanlış url bağlantısı !")
+   
+   context = {}
+   return redirect("loginUser")

@@ -23,6 +23,8 @@ class UserInfo(models.Model):
       
       if self.emailactive is None:
          users = UserInfo.objects.all().values("emailactive")
+         # self.emailactive = get_random_string(length=64)
+         
          while True:
             randomemail = get_random_string(length=64)
             for i in users:

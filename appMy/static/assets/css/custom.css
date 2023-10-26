@@ -1,3 +1,24 @@
 /*
 Custom Css
 */
+.user-menu{
+   position: relative;
+}
+.user-hover-menu{
+   min-width: 160px;
+   padding: 1rem;
+   position: absolute;
+   bottom: -120px;
+   left: -100px;
+   z-index: 1000;
+   display: none;
+   flex-direction: column !important;
+   background-color: #484848;
+   border-radius: 5px;
+}
+.user-menu:hover .user-hover-menu{
+   display: flex;
+}
+.user-hover-menu a{
+   color: white !important;
+}
