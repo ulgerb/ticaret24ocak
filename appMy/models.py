@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 
 class Brand(models.Model):
    title = models.CharField(("Marka Başlık"), max_length=50)
-   slug = models.SlugField(("Slug"), blank=True, unique=True)
+   slug = models.SlugField(("Slug"), blank=True)
    
    def save(self):
-      self.slug = slugify(self.title)
+      self.slug = slugify(self.title) # boşluk yerine - , türkçe karakteri ingilizceye dönüştür
       super().save()
       
    def __str__(self) -> str:
@@ -16,7 +16,7 @@ class Brand(models.Model):
 
 class Category(models.Model):
    title = models.CharField(("Kategori Başlık"), max_length=50)
-   slug = models.SlugField(("Slug"), blank=True, unique=True)
+   slug = models.SlugField(("Slug"), blank=True)
    
    def save(self):
       self.slug = slugify(self.title)
@@ -27,7 +27,7 @@ class Category(models.Model):
 
 class Color(models.Model):
    title = models.CharField(("Renk Başlık"), max_length=50)
-   slug = models.SlugField(("Slug"), blank=True, unique=True)
+   slug = models.SlugField(("Slug"), blank=True)
 
    def save(self):
       self.slug = slugify(self.title)
@@ -46,8 +46,10 @@ class ProductMain(models.Model):
    Description = models.TextField(("Açıklama"))
    comments = models.IntegerField(("Yorum Sayısı"), default=0)
    price = models.FloatField(("Fiyat"))
-   slug = models.SlugField(("Slug"), blank=True, unique=True, null=True)
-
+   slug = models.SlugField(("Slug"), blank=True, null=True)
+   image = models.ImageField(("Ürün Kart Resmi"), upload_to="product", max_length=350, null=True)
+   
+   
    def __str__(self) -> str:
       return self.title
 
@@ -73,7 +75,7 @@ class ProductInfo(models.Model):
    
 
 class Image(models.Model):
-   product = models.ForeignKey(ProductMain, verbose_name=("Ürün"), on_delete=models.CASCADE)
+   product = models.ForeignKey(ProductMain, verbose_name=("Ürün"), on_delete=models.CASCADE, null=True, related_name='product')
    image = models.ImageField(("Resim"), upload_to="product", max_length=400)
 
    def __str__(self) -> str:
