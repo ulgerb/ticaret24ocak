@@ -27,6 +27,7 @@ class Category(models.Model):
 
 class Color(models.Model):
    title = models.CharField(("Renk Başlık"), max_length=50)
+   color_cod = models.CharField(("Renk Kodu"), max_length=50, null=True)
    slug = models.SlugField(("Slug"), blank=True)
 
    def save(self):
@@ -48,7 +49,7 @@ class ProductMain(models.Model):
    price = models.FloatField(("Fiyat"))
    slug = models.SlugField(("Slug"), blank=True, null=True)
    image = models.ImageField(("Ürün Kart Resmi"), upload_to="product", max_length=350, null=True)
-   
+   rating = models.FloatField(("Ürün Puanı"), default=0)
    
    def __str__(self) -> str:
       return self.title
@@ -82,3 +83,12 @@ class Image(models.Model):
       return self.product.title
 
 
+
+class Comment(models.Model):
+   product = models.ForeignKey(ProductMain, verbose_name=("Ürün"), on_delete=models.CASCADE)
+   user = models.ForeignKey(User, verbose_name=("Kullanıcı"), on_delete=models.CASCADE)
+   text = models.TextField(("Yorum"))
+   rating = models.IntegerField(("Yorum Puanı"))
+
+   def __str__(self) -> str:
+      return self.product.title

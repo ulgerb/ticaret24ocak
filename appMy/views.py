@@ -32,9 +32,18 @@ def detailPage(request,slug, size=None, color=None):
       productinfo = ProductInfo.objects.filter(product__slug=slug).first()
    else:
       productinfo = ProductInfo.objects.get(product__slug=slug, size=size, color=color)
-      
+   
+   images = Image.objects.filter(product=productinfo.product)
+   comments = Comment.objects.filter(product=productinfo.product)
+   colors = Color.objects.all()
+
+   productinfo_list = ProductInfo.objects.filter(product__slug=slug).values("color__color_cod").annotate(Count("color"))
+   print(productinfo_list)
    
    context = {
       "productinfo": productinfo,
+      "comments": comments,
+      "images": images,
+      "productinfo_list": productinfo_list,
    }
    return render(request, "shop-single.html", context)
