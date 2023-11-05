@@ -124,38 +124,43 @@
                             <p>{{ productinfo.product.Description }}</p>
                             
 
-                            <form action="" method="GET">
+                            <form method="POST">
+                                {% csrf_token %}
                                 <input type="hidden" name="product-title" value="Activewear">
                                 <div class="row">
                                     <div class="col-12">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Renk :
-                                                <input type="hidden" name="product-color" id="product-color" value="S">
-                                            </li>
+                                        <div class="d-flex gap-2 pb-3">
+                                            <div class="">Renk :
+                                            </div>
                                             
                                             {% for i in productinfo_list %}
-                                            <li class="list-inline-item"><span class="btn btn-size" style="background-color: {{ i.color__color_cod }}; height:30px;"></span></li>
+                                            <a href="{% url 'detailPage2' productinfo.product.slug i.color__slug %}" class=""><span href="#" class="btn border {% if color_cod == i.color__color_cod %}border-primary{% endif %} border-2" style="background-color: {{ i.color__color_cod }}; height:30px;"></span></a>
                                             {% endfor %}
                                                 
                                             
-                                        </ul>
+                                        </div>
                                     </div>
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">Beden :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
+                                                <input type="hidden" name="size" id="product-size" value="S">
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li>
+                                            
+                                            {% for i in size_list %}
+                                            {% if i.0 in productinfo_size2 %}
+                                            <li class="list-inline-item"><span class="btn btn-success btn-size">{{ i.1 }}</span></li>
+                                            {% else %}
+                                            <li class="list-inline-item"><span class="btn btn-success disabled btn-size" style="background-color: #444 !important;;">{{ i.1 }}</span></li>
+                                            {% endif %}
+                                            {% endfor %}
+
                                         </ul>
                                     </div>
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
-                                                Quantity
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                                                Adet
+                                                <input type="hidden" name="quanity" id="product-quanity" value="1">
                                             </li>
                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
                                             <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
@@ -165,10 +170,7 @@
                                 </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
+                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="shopAddSubmit">Sepete Ekle</button>
                                     </div>
                                 </div>
                             </form>

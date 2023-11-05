@@ -30,5 +30,10 @@ class ProductInfoAdmin(admin.ModelAdmin):
    list_display = ('product', 'size', 'color', 'stok')
    search_fields = ('product', 'size', 'color')
 
+@admin.register(BasketShop)
+class BasketShopAdmin(admin.ModelAdmin):
+   list_display = ('product', 'user', 'quanity')
+   search_fields = ('product',"user")
+
 
 admin.site.register(Image)

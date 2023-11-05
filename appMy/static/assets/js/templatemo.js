@@ -45,6 +45,12 @@ $(document).ready(function() {
     });
     $('.btn-size').click(function(){
       var this_val = $(this).html();
+      if (this_val === "S"){this_val="small"}
+      if (this_val === "M"){this_val="medium"}
+      if (this_val === "L"){this_val="large"}
+      if (this_val === "XL"){this_val="xlarge"}
+
+      
       $("#product-size").val(this_val);
       $(".btn-size").removeClass('btn-secondary');
       $(".btn-size").addClass('btn-success');

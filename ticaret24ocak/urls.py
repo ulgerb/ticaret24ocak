@@ -28,7 +28,7 @@ urlpatterns = [
     path('contact/', contactPage, name="contactPage"),
     path('shop/', shopPage, name="shopPage"),
     path('detail/<slug>/', detailPage, name="detailPage1"),
-    path('detail/<slug>/<size>/<color>/', detailPage, name="detailPage2"),
+    path('detail/<slug>/<color>/', detailPage, name="detailPage2"),
     
     # path('user/', include("appUser.urls"))
     # === USER ===
