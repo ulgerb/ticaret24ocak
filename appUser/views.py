@@ -8,6 +8,7 @@ from ticaret24ocak.settings import EMAIL_HOST_USER
 from .models import *
 
 def loginUser(request):
+   nexturl = request.GET.get("next")
    if request.method == "POST":
       username = request.POST.get("username")
       password = request.POST.get("password")
@@ -19,6 +20,9 @@ def loginUser(request):
          messages.success(request, "Giriş Yaptınız...")
          if remember:
             request.session.set_expiry(604800)
+         if nexturl:
+            return redirect(nexturl)
+            
          return redirect("indexPage")
       else:
          messages.error(request, "Kullanıcı adı veya şifre hatalı!")

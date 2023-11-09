@@ -72,7 +72,7 @@ class ProductInfo(models.Model):
    stok = models.IntegerField(("Stok"), default=0)
 
    def __str__(self) -> str:
-      return self.product.title
+      return self.product.title + " " + self.size + " " + self.color.title
    
 
 class Image(models.Model):
@@ -98,6 +98,7 @@ class BasketShop(models.Model):
    user = models.ForeignKey(User, verbose_name=("Kullanıcı"), on_delete=models.CASCADE)
    product = models.ForeignKey(ProductInfo, verbose_name=("Ürün"), on_delete=models.CASCADE)
    quanity = models.IntegerField(("Adet"), default=0)
+   total_price = models.FloatField(("Toplam Fiyat"), default=0)
    
    def __str__(self) -> str:
       return self.product.product.title + " " + self.product.color.title + " " + self.product.size
