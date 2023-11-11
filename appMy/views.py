@@ -45,10 +45,10 @@ def detailPage(request,slug, color=None):
       productinfo_size2.append(i.get("size"))
    size_list = [("small","S"), ("medium","M"),("large","L"), ("xlarge","XL")]
    
-   if request.user.is_authenticated:
-      if request.method == "POST":
-         submit = request.POST.get("submit")
-         if submit == "shopAddSubmit":
+   if request.method == "POST":
+      submit = request.POST.get("submit")
+      if submit == "shopAddSubmit":
+         if request.user.is_authenticated:
             size = request.POST.get("size")
             quanity = request.POST.get("quanity")
             if size and quanity:
@@ -66,9 +66,9 @@ def detailPage(request,slug, color=None):
                   basketshop.save()
                
             return redirect("detailPage2", slug=slug, color=color)
-   else:
-      messages.error(request, "Ürünü satın alabilmek için giriş yapınız!")
-      return redirect("loginPage")
+         else:
+            messages.error(request, "Ürünü satın alabilmek için giriş yapınız!")
+            return redirect("loginUser")
    
    context = {
       "productinfo": productinfo,

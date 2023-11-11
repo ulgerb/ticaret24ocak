@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import mimetypes
+import mimetypes # localde DEBUG FALSE ve 404 sayfası çalışabilmesi için yapıldı
 mimetypes.add_type("text/javascript", ".js", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +29,16 @@ SECRET_KEY = 'django-insecure-o%*d#911044k0h6)80uktr#jk0ww#2ipn&#c(b94#_9yc_u^$z
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-
+# Canlıya alınırken yapılması zorunlu
+# == SETTINGS ==
+# DEBUG False
+# ALLOWED_HOSTS = ["*"]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+# py manage.py collectstatic 
+# == URL ==
+# re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+# re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
 # Application definition
 
